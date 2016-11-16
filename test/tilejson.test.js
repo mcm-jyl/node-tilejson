@@ -6,7 +6,8 @@ var TileJSON = require('..');
 
 var fixtures = {
     'world-bright': JSON.parse(fs.readFileSync(__dirname + '/fixtures/world-bright.tilejson')),
-    'grid': JSON.parse(fs.readFileSync(__dirname + '/fixtures/grid.tilejson'))
+    'grid': JSON.parse(fs.readFileSync(__dirname + '/fixtures/grid.tilejson')),
+    'osm-wms': JSON.parse(fs.readFileSync(__dirname + '/fixtures/osm-wms.tilejson'))
 };
 
 function md5(str) {
@@ -16,6 +17,7 @@ function md5(str) {
 var world_bright;
 var world_bright_ssl;
 var grid_source;
+var osm_wms;
 
 tape('setup', function(assert) {
     new TileJSON('tilejson://' + __dirname + '/fixtures/world-bright.tilejson', function(err, source) {
@@ -38,11 +40,18 @@ tape('setup', function(assert) {
         assert.end();
     });
 });
+tape('setup', function(assert) {
+    new TileJSON('tilejson://' + __dirname + '/fixtures/osm-wms.tilejson', function(err, source) {
+        osm_wms = source;
+        assert.ifError(err);
+        assert.end();
+    });
+});
 
 tape('list', function(assert) {
     TileJSON.list(__dirname + '/fixtures', function(err, list) {
         assert.ifError(err);
-        assert.deepEqual(Object.keys(list), ['bad', 'grid', 'invalid', 'world-bright-ssl', 'world-bright']);
+        assert.deepEqual(Object.keys(list), ['bad', 'grid', 'invalid', 'world-bright-ssl', 'world-bright', 'osm-wms']);
         assert.end();
     });
 });
@@ -315,6 +324,18 @@ tape('findID', function(assert) {
             assert.end();
         });
     });
+
+    tape('should load tile 0/0/0', function(assert) {
+        osm_wms.getTile(0, 0, 0, function(err, data, headers) {
+            if (err) throw err;
+            assert.ok(!isNaN(Date.parse(headers['Last-Modified'])));
+            assert.equal('image/png', headers['Content-Type']);
+            assert.equal('string', typeof headers['ETag']);
+            assert.equal('g388mc1bmoH+puyJI3JxeQ==', md5(data));
+            assert.end();
+        });
+    });
+
 })();
 
 (function() {

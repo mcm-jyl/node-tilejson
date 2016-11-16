@@ -51,7 +51,7 @@ tape('setup', function(assert) {
 tape('list', function(assert) {
     TileJSON.list(__dirname + '/fixtures', function(err, list) {
         assert.ifError(err);
-        assert.deepEqual(Object.keys(list), ['bad', 'grid', 'invalid', 'world-bright-ssl', 'world-bright', 'osm-wms']);
+        assert.deepEqual(Object.keys(list), ['bad', 'grid', 'invalid', 'osm-wms', 'world-bright-ssl', 'world-bright']);
         assert.end();
     });
 });
@@ -325,13 +325,13 @@ tape('findID', function(assert) {
         });
     });
 
-    tape('should load tile 0/0/0', function(assert) {
+    tape('should load tile 0/0/0 through a WMS', function(assert) {
         osm_wms.getTile(0, 0, 0, function(err, data, headers) {
             if (err) throw err;
             assert.ok(!isNaN(Date.parse(headers['Last-Modified'])));
             assert.equal('image/png', headers['Content-Type']);
             assert.equal('string', typeof headers['ETag']);
-            assert.equal('g388mc1bmoH+puyJI3JxeQ==', md5(data));
+            assert.equal('837f3c99cd5b9a81fea6ec8923727179', md5(data));
             assert.end();
         });
     });

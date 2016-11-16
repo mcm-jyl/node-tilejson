@@ -2,7 +2,7 @@
   "scheme": "xyz",
   "tilejson": "2.0.0",
   "description": "Spherical Mercator WMS called from a tileJSON, ",
-  "attribution": "<a href='http://openstreetmap.org'>OSM contributors</a>, tiles from <ahref="http://osm-wms.de/">osm-wms.de</a>",
+  "attribution": "<a href='http://openstreetmap.org'>OSM contributors</a>, tiles from <ahref='http://osm-wms.de/'>osm-wms.de</a>",
   "autoscale": true,
   "bounds": [
     -180,

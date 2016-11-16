@@ -1,0 +1,25 @@
+{
+  "scheme": "xyz",
+  "tilejson": "2.0.0",
+  "description": "Spherical Mercator WMS called from a tileJSON, ",
+  "attribution": "<a href='http://openstreetmap.org'>OSM contributors</a>, tiles from <ahref="http://osm-wms.de/">osm-wms.de</a>",
+  "autoscale": true,
+  "bounds": [
+    -180,
+    -85.0511,
+    180,
+    85.0511
+  ],
+  "minzoom": 0,
+  "maxzoom": null,
+  "name": "osm",
+  "center": [
+    -122.444,
+    37.7908,
+    12
+  ],
+  "format": "png",
+  "tiles": [
+"http://129.206.228.72/cached/osm?LAYERS=osm_auto%3Aall&SRS=EPSG%3A900913&FORMAT=image%2Fpng&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&BBOX={bbox}&WIDTH=256&HEIGHT=256"
+  ]
+}

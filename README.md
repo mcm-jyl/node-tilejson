@@ -19,3 +19,10 @@ it implements methods that allow fetching of tiles and metadata given a TileJSON
 object.
 
 Provides a metadata for online tile sources in json format.
+
+## Template
+Following variables are replaced from URLs in order to get actual tiles:
+- {x} index on the x-axis
+- {y} index on the y-axis (direction depends on the scheme)
+- {z} zoom level
+- {bbox} bounding box in Spherical Mercator coordinates.

@@ -1,18 +1,18 @@
 {
-  "name": "tilejson",
+  "name": "@mapbox/tilejson",
   "description": "Tile source backend for online tile sources",
   "version": "1.1.0",
   "author": "Mapbox (https://www.mapbox.com)",
-  "license": "BSD",
+  "license": "BSD-2-Clause",
   "contributors": [
     "Konstantin Käfer <kkaefer@gmail.com>",
     "mcm-jyl"
   ],
   "dependencies": {
+    "@mapbox/sphericalmercator" : "1.0.5"
+    "@mapbox/tiletype": "~0.3.1",
     "agentkeepalive": "2.0.2",
-    "requestretry": "1.4.0",
-    "tiletype": "0.1.x" ,
-    "sphericalmercator" : "1.0.5"
+    "requestretry": "^1.12.0"
   },
   "devDependencies": {
     "eslint": "^0.24.0",
